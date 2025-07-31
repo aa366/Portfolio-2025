@@ -9,7 +9,7 @@ export default function GlobalError({ error }: { error: Error & { digest?: strin
     Sentry.captureException(error);
   }, [error]);
 
-  return (
+  return (   
     <html>
       <body>
         {/* `NextError` is the default Next.js error page component. Its type
