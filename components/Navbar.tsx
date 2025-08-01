@@ -4,7 +4,9 @@ import Link from "next/link";
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { ModeToggle } from "@/components/ui/togglebtn";
+
 export default function Navbar({ otherClasses = "" }) {
+  const navItems = [{ name: "home", href: "/" }];
   const [navShow, setNavShow] = useState("right-[100%]");
   const [divShow, setDivShow] = useState("hidden");
 
@@ -18,73 +20,55 @@ export default function Navbar({ otherClasses = "" }) {
     }
   };
 
-  return (<div className="h-[15vh] w-full lg:h-[17vh]">
-    <nav
-      className={`nav-bar w-full flex py-4 md:py-0 text-black bg-white dark:bg-gray-900 dark:text-white text-4xl fixed justify-between px-[5%]  z-90 shadow-md ${otherClasses} `}
-    >
-      <div className="self-center">Abdelwahab</div>
-
-      <div
-        className={` fixed h-screen w-screen bg-gray-300 left-0 top-0 opacity-50 ${divShow} md:hidden`}
-        onClick={handleShow}
-      />
-      <div className="flex gap-2">
-
-      
-      <div className="flex gap-5 md:gap-2 lg:gap-5 items-center ">
-        <div className="flex self-center cursor-pointer ">
-             <ModeToggle />
-        </div>
-     
-
-        <button className="md:hidden cursor-pointer" onClick={handleShow}>
-          <FaBars />
-        </button>
-      </div>
-
-      <ul
-        className={`flex flex-col items-center md:flex-row gap-[3%] text-2xl h-screen  md:h-full absolute bg-white  dark:bg-gray-900  dark:text-white p-2 transition md:transition-none ${navShow} md:static top-0 `}
+  return (
+    <div className="h-[15vh] w-full lg:h-[17vh]">
+      <nav
+        className={`nav-bar w-full flex py-4  text-black bg-white dark:bg-gray-900 dark:text-white text-4xl  justify-between px-[5%]   shadow-md ${otherClasses} `}
       >
-        <IoMdClose
-          className="  md:hidden cursor-pointer hover:text-amber-500 text-4xl "
+        <div className="self-center flex justify-center items-center ">
+          <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+            Abdelwahab
+          </span>
+        </div>
+
+        <div
+          className={` fixed h-screen w-screen bg-gray-300 left-0 top-0 opacity-50 ${divShow} `}
           onClick={handleShow}
         />
+        <div className="flex gap-2">
+          <div className="flex gap-5 md:gap-2 lg:gap-5 items-center ">
+            <div className="flex self-center cursor-pointer ">
+              <ModeToggle />
+            </div>
 
-        <li
-          onClick={handleShow}
-          className="cursor-pointer hover:bg-gray-500 rounded-lg p-3"
-        >
-          <Link className="h-full w-full" href={`/`}>
-            Home
-          </Link>
-        </li>
-        <li
-          onClick={handleShow}
-          className="cursor-pointer hover:bg-gray-500 rounded-lg p-3  "
-        >
-          <Link className="h-full w-full " href={`/projects`}>
-            Projects
-          </Link>
-        </li>
-        <li
-          onClick={handleShow}
-          className="cursor-pointer hover:bg-gray-500 rounded-lg p-3  "
-        >
-          <Link className="h-full w-full " href={`/about`}>
-            About
-          </Link>
-        </li>
-        <li
-          onClick={handleShow}
-          className="cursor-pointer hover:bg-gray-500 rounded-lg p-3  "
-        >
-          <Link className=" h-full w-full " href={`/contact`}>
-            Contact
-          </Link>
-        </li>
-      </ul>
-      </div>
-    </nav>
+            <button className=" cursor-pointer" onClick={handleShow}>
+              <FaBars />
+            </button>
+          </div>
+
+          <ul
+            className={`flex flex-col items-center  gap-[3%] text-2xl h-screen   fixed z-[500] bg-white  dark:bg-gray-900  dark:text-white p-2 transition ${navShow}  top-0 `}
+          >
+            <IoMdClose
+              className="  cursor-pointer hover:text-amber-500 text-4xl "
+              onClick={handleShow}
+            />
+            {navItems.map((ele, idx) => {
+              return (
+                <li
+                  onClick={handleShow}
+                  key={ele.href + idx}
+                  className="cursor-pointer  rounded-lg p-3 md:animate-chaking hover:animate-none"
+                > 
+                  <Link className="h-full w-full capitalize" href={`${ele.href}`}>
+                   {ele.name}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      </nav>
     </div>
   );
 }
