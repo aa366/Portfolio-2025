@@ -10,7 +10,7 @@ const BackGround = () => {
   return (
     <div className='w-screen h-screen fixed t-0 left-0 -z-[99] '>
     { theme == "dark"  &&  <Vortex  /> }
-  { theme == "light"  &&   <WavyBackground speed="fast" backgroundFill="white" />}
+  { theme == "light"  &&   <WavyBackground speed="fast" backgroundFill="hsl(0, 0%, 98%)" />}
   
     
     </div>

@@ -21,9 +21,9 @@ export default function Navbar({ otherClasses = "" }) {
   };
 
   return (
-    <div className="h-[15vh] w-full lg:h-[17vh]">
+   
       <nav
-        className={`nav-bar w-full flex py-4  text-black bg-white dark:bg-gray-900 dark:text-white text-4xl  justify-between px-[5%]   shadow-md ${otherClasses} `}
+        className={`nav-bar w-full flex py-4  text-black bg-[hsl(0,0%,98%)]  dark:bg-gray-900 dark:text-white text-4xl  justify-between px-[5%]   shadow-md ${otherClasses} `}
       >
         <div className="self-center flex justify-center items-center ">
           <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl">
@@ -69,6 +69,6 @@ export default function Navbar({ otherClasses = "" }) {
           </ul>
         </div>
       </nav>
-    </div>
+    
   );
 }
