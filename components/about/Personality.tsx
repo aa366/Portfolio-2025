@@ -25,20 +25,29 @@ const Personality = () => {
    
       <div className=" grid grid-cols-1 md:grid-cols-2 gap-[5%] w-fit  p-[2%] pt-0">
 
+        <div className=" relative overflow-hidden flex justify-center items-center">
+
+          <div className=" animate-profileimg absolute -z-1  rounded-[100%] w-1/2 max-w-[400px] md:w-full   top-[50%] left-[50%] -translate-1/2 p-3 aspect-square bg-gradient-to-r from-[#3783FF] to-[#F60000]"></div>
+
+
+       
+
         <Image
           src={img}
           alt=""
           width={100}
           height={100}
-          className=" rounded-[100%] w-1/2 max-w-[400px] flex justify-self-center md:w-full  aspect-square object-cover self-center"
+          className=" rounded-[100%] w-1/2 max-w-[400px] md:w-full  aspect-square object-cover  p-3 "
         />
+         </div>
 
         <div className="w-full p-3">
        
 
 
           <div className="inset-0  backdrop-blur-lg p-2 bg-[#fffdfd3f]   dark:bg-none ">
-             <div className="flex items-center gap-1">
+
+             <div className="flex items-center gap-1 ">
                         <Image unoptimized={true} alt='waving-hand' width={30} height={30} src={wavingHand} />
                         <p className="text-lg md:text-xl mt-2 md:mt-1.5">
                            {welcomMSG}

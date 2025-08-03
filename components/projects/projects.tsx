@@ -1,99 +1,90 @@
-import React from "react";
-import data from "@/data/home.json";
-import dataP from "@/data/projects.json";
-import { Lens } from "@/components/ui/lens";
+import { project } from "@/types/main";
+import { useEffect, useState } from "react";
+import { Link } from "react-scroll";
+import SectionWrapper from "../SectionWrapper";
+import ProjectCard from "./projectCard";
 
-const Projects = () => {
-  const { projects, icon, links } = dataP;
-  const { personal: infos } = data;
-  const { best } = projects;
+interface Props {
+    projectsData: project[]
+}
 
-  return (
-    <div className="flex flex-col gap-3 items-center w-full ">
+const Projects = ({ projectsData }: Props) => {
 
-      <button className="p-[3px] relative w-fit flex capitalize ">
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
-        <div className="px-8 py-2  text-black  dark:text-white rounded-[6px]  relative group transition duration-200  bg-transparent font-bold">
-          projects
-        </div>
-      </button>
+    const [projects] = useState([...projectsData].reverse() as project[])
 
-      <div className=" w-full flex justify-center flex-wrap  gap-4 p-4">
-        {best.map(
-          ({
-            deploy,
-            github,
-            img,
-            title,
-            tech,
-            description,
-            challenges,
-            time,
-          }) => (
-            <div
-              key={title + deploy}
-              className=" p-5 border bg-gray-400 dark:bg-gray-600  rounded-2xl shadow-sm  flex flex-col gap-1  justify-between  flex-1 min-w-[300px] max-w-[500px] items-center"
-            >
-              <Lens>
-                <img src={img} alt={""} className="w-100  object-contain" />
-              </Lens>
+    // const categories = ['All', ...Array.from(new Set(projects.map((s) => s.category)))]
+    const categories = [...Array.from(new Set(projects.map((s) => s.category)))]
 
-              <h3 className="text-2xl capitalize">
-                {title + " "}
-                <a
-                  href={deploy}
-                  target="_blanck"
-                  className="text-blue-800 dark:text-blue-300 "
-                >
-                  See
-                </a>
-              </h3>
-             <div className="flex flex-col justify-between">
-                 <h5 className="text-2xl  break-words">
-                <span className="text-amber-700 dark:text-amber-300 font-bold ">
-                  Description :{" "}
-                </span>
-                {description}
-              </h5>
-              <h5 className="text-2xl ">
-                <span className="text-amber-700 dark:text-amber-300 font-bold ">
-                  Challenges :{" "}
-                </span>
-                {challenges}
-              </h5>
-              <h5 className="text-2xl ">
-                {" "}
-                <span className="text-amber-700 dark:text-amber-300 font-bold ">
-                  Time :{" "}
-                </span>
-                {time} days
-              </h5>
+    // const [category, setCategory] = useState(categories[0] || "All")
+    const [category, setCategory] = useState(categories[0])
 
-             </div>
+    const [filteredProjects, setFilteredProjects] = useState(projects as project[])
+    const [viewAll, setViewAll] = useState(false)
 
-              <div className="flex justify-between w-full">
+    const filterProjects = (cat: string) => {
+        setViewAll(false)
+        setCategory(cat)
+        // cat === "All" ? setFilteredProjects(projects) :
+        setFilteredProjects(projects.filter((p: project) => p.category.toLowerCase() === cat.toLowerCase()));
+    }
 
-                <div className="flex w-fit items-center ">
-                  {tech.map((ele) => (
-                    <img
-                      src={icon[ele]}
-                      alt={ele}
-                      key={icon[ele] + deploy}
-                      className={`w-7 h-7  `}
-                    />
-                  ))}
-                </div>
+    useEffect(() => {
+        filterProjects(categories.includes('MERN Stack') ? "MERN Stack" : categories[0])
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
-                <a href={github} target="_blacnk">
-                  <img src={icon.Github} alt="" className="w-10" />
-                </a>
-              </div>
+    return (
+        <SectionWrapper id="projects" className="mx-4 md:mx-0 min-h-screen">
+            <h2 className="text-4xl text-center">Projects</h2>
+
+            <div className="overflow-x-auto scroll-hide md:w-full max-w-screen-sm mx-auto mt-6 flex justify-between items-center gap-2 md:gap-3 bg-white dark:bg-gray-800 p-2 rounded-md">
+                {categories.map((c: string = "", i: number) => (
+                    <span key={i} onClick={() => filterProjects(c)} className={`p-1.5 md:p-2 w-full text-sm md:text-base text-center capitalize rounded-md ${category.toLowerCase() === c.toLowerCase() ? "bg-violet-600 text-white" : "hover:bg-gray-100 hover:dark:bg-grey-900"} cursor-pointer transition-all`}>
+                        {c}
+                    </span>
+                ))}
             </div>
-          )
-        )}
-      </div>
-    </div>
-  );
-};
 
-export default Projects;
+            <div className="md:mx-6 lg:mx-auto lg:w-5/6 2xl:w-3/4 my-4 md:my-8 mx-auto grid md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-10">
+                {filteredProjects.slice(0, viewAll ? filteredProjects.length : 6).map((p: project, i: number) => (
+                    <ProjectCard key={i} {...p} />
+                ))}
+            </div>
+
+
+            {filteredProjects.length > 6
+                &&
+                <ViewAll scrollTo='projects' title={viewAll ? 'Okay, I got it' : 'View All'} handleClick={() => setViewAll(!viewAll)} />
+            }
+        </SectionWrapper>
+    )
+}
+
+export default Projects
+
+type MouseEventHandler = (event: React.MouseEvent<HTMLButtonElement>) => void;
+
+export const ViewAll = ({ handleClick, title, scrollTo }: { handleClick: MouseEventHandler, title: string, scrollTo: string }) => {
+    return (
+        <>
+            <div className="bg-white dark:bg-grey-900 w-4/5 mx-auto blur-xl z-20 -translate-y-14 h-16"></div>
+            <div className="text-center -translate-y-24">
+                {title === 'View All' ?
+                    <button onClick={handleClick} className={`bg-violet-600 text-white px-4 ${title === 'View All' ? 'animate-bounce' : 'animate-none'} py-1.5 rounded-md hover:shadow-xl transition-all`}>
+                        {title}
+                    </button>
+                    :
+                    <Link
+                        to={scrollTo}
+                        className={`bg-violet-600 text-white px-4 ${title === 'View All' ? 'animate-bounce' : 'animate-none'} cursor-pointer py-1.5 rounded-md hover:shadow-xl transition-all`}
+                        offset={-60}
+                        smooth={true}
+                        duration={500}
+                        // @ts-ignore
+                        onClick={() => handleClick()}
+                    >{title}</Link>
+                }
+            </div>
+        </>
+    )
+}

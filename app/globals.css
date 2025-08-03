@@ -241,6 +241,7 @@
 @theme{
 
 --animate-chaking :shake  1s  ease-in-out infinite;
+--animate-profileimg:profileimg 2s linear infinite;
 
 @keyframes shake {
    0%,
@@ -254,4 +255,14 @@
 
 
 
+
+}
+
+@keyframes profileimg {
+  
+  100%{
+     transform: rotate(360deg);
+    
+  }
+  
 }
