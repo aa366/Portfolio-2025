@@ -22,6 +22,12 @@ export default  function Home() {
       {name: "HTML5",image: "/techs/html.png",category: "FrontEnd"},
       {name: "CSS3",image: "/techs/css3.png",category: "FrontEnd"},
       {name: "Sass",image: "/techs/sass.png",category: "FrontEnd"},
+      {name: "Shadcn",image: "/techs/shadcn.png",category: "FrontEnd"},
+      {name: "Axios",image: "/techs/axios.png",category: "FrontEnd"},
+      {name: "ESLint",image: "/techs/ESLint.png",category: "FrontEnd"},
+      {name: "Prettier",image: "/techs/Prettier.png",category: "FrontEnd"},
+      {name: "Light House",image: "/techs/LightHouse.png",category: "FrontEnd"},
+   
 
 
       {name: "Googling",image: "/techs/google-logo.png",category: "others"},

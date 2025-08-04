@@ -3,6 +3,7 @@ import React from "react";
 // import data from "@/data/home.json";
 import Image from "next/image";
 import Typewriter from 'typewriter-effect';
+import Link from "next/link";
 
 const Personality = () => {
 
@@ -25,20 +26,23 @@ const Personality = () => {
    
       <div className=" grid grid-cols-1 md:grid-cols-2 gap-[5%] w-fit  p-[2%] pt-0">
 
-        <div className=" relative overflow-hidden flex justify-center items-center">
+        <div className=" relative  flex justify-center items-center">
 
-          <div className=" animate-profileimg absolute -z-1  rounded-[100%] w-1/2 max-w-[400px] md:w-full   top-[50%] left-[50%] -translate-1/2 p-3 aspect-square bg-gradient-to-r from-[#3783FF] to-[#F60000]"></div>
+          <div className=" animate-profileimg absolute -z-1  rounded-[100%] w-[70%] max-w-[400px] md:w-full   top-[50%] left-[50%] -translate-1/2 p-3 aspect-square bg-gradient-to-r from-[#3783FF] to-[#F60000]"></div>
 
 
        
-
+        <Link href={img} target="_blanck" className=" w-[70%] max-w-[400px] md:w-full  p-3">
+       
         <Image
           src={img}
           alt=""
           width={100}
           height={100}
-          className=" rounded-[100%] w-1/2 max-w-[400px] md:w-full  aspect-square object-cover  p-3 "
+          className=" w-full h-full rounded-[100%] aspect-square object-cover "
+          
         />
+         </Link>
          </div>
 
         <div className="w-full p-3">
@@ -47,7 +51,7 @@ const Personality = () => {
 
           <div className="inset-0  backdrop-blur-lg p-2 bg-[#fffdfd3f]   dark:bg-none ">
 
-             <div className="flex items-center gap-1 ">
+             <div className="flex items-center gap-1 justify-self-center sm:justify-self-start">
                         <Image unoptimized={true} alt='waving-hand' width={30} height={30} src={wavingHand} />
                         <p className="text-lg md:text-xl mt-2 md:mt-1.5">
                            {welcomMSG}
@@ -55,7 +59,7 @@ const Personality = () => {
                     </div>
 
 
-              <h1 className="text-3xl font-bold text-center text-amber-700 dark:text-amber-300 flex gap-2">
+              <h1 className="text-3xl font-bold text-center text-amber-700 dark:text-amber-300 flex gap-2 flex-col sm:flex-row">
                 <span>{ctitle}</span>
                 <Typewriter
                             options={{
@@ -64,14 +68,14 @@ const Personality = () => {
                                 loop: true,
                                 deleteSpeed: 50,
                                 delay: 50,
-                                wrapperClassName: "text-violet-800 dark:text-violet-300 text-3xl md:text-3xl font-medium",
-                                cursorClassName: "text-violet-800 dark:text-violet-300 text-3xl md:text-3xl"
+                                wrapperClassName: "text-violet-800 dark:text-violet-300 capitalize text-[1.6rem] font-bold sm:text-3xl md:text-3xl font-medium",
+                                cursorClassName: "text-violet-800 dark:text-violet-300 font-bold  capitalize text-[1.5rem] sm:text-3xl md:text-3xl"
                             }}
                         />
            
           </h1>
 
-          <p className="text-[1.3rem] font-bold text-balance text-center sm:text-2xl">
+          <p className="text-lg   font-bold text-balance text-center sm:text-[1.3rem]">
             {para}
           </p>
           </div>

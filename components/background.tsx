@@ -1,16 +1,27 @@
 "use client"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {Vortex} from "@/components/ui/vortex"
 import {WavyBackground} from "@/components/ui/wavy-background"
-
 import { useTheme } from "next-themes";
 
 const BackGround = () => {
-     const {theme} = useTheme()
+
+     const {resolvedTheme} = useTheme()
+     const [mounted,setMounted] = useState(false)
+
+     useEffect(() => {
+      setMounted(true)
+      return () => {
+        
+      };
+     }, []);
+
+     if (!mounted) return null
+
   return (
     <div className='w-screen h-screen fixed t-0 left-0 -z-[99] '>
-    { theme == "dark"  &&  <Vortex  /> }
-  { theme == "light"  &&   <WavyBackground speed="fast" backgroundFill="hsl(0, 0%, 98%)" />}
+    { resolvedTheme == "dark"  &&  <Vortex  /> }
+  { resolvedTheme == "light"  &&   <WavyBackground speed="fast" backgroundFill="hsl(0, 0%, 98%)" />}
   
     
     </div>

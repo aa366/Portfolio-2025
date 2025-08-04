@@ -23,7 +23,7 @@ export default function Navbar({ otherClasses = "" }) {
   return (
    
       <nav
-        className={`nav-bar w-full flex py-4  text-black bg-[hsl(0,0%,98%)]  dark:bg-gray-900 dark:text-white text-4xl  justify-between px-[5%]   shadow-md ${otherClasses} `}
+        className={`nav-bar w-full flex py-4  text-black bg-[hsl(0,0%,98%)]  dark:bg-gray-900 dark:text-white text-4xl  justify-between px-[5%]   shadow-md ${otherClasses}  `}
       >
         <div className="self-center flex justify-center items-center ">
           <span className="text-xl sm:text-2xl md:text-3xl lg:text-4xl">
@@ -32,7 +32,7 @@ export default function Navbar({ otherClasses = "" }) {
         </div>
 
         <div
-          className={` fixed h-screen w-screen bg-gray-300 left-0 top-0 opacity-50 ${divShow} `}
+          className={` fixed h-screen w-screen bg-gray-300 left-0 top-0 opacity-50 z-40 ${divShow} `}
           onClick={handleShow}
         />
         <div className="flex gap-2">

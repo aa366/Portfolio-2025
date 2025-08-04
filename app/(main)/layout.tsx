@@ -2,6 +2,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackGround from "@/components/background";
+import HirMe from "@/components/about/hirme";
 
 
 export default function RootLayout({
@@ -20,6 +21,7 @@ export default function RootLayout({
           {children}
         </div>
         <Footer />
+        <HirMe />
         
      </>
   );

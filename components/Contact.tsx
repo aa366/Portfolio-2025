@@ -14,7 +14,7 @@ const Contact = () => {
         message: "",
     });
     const [loading, setLoading] = useState(false);
-    const [success, setSuccess] = useState(false);
+    const [, setSuccess] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -54,11 +54,11 @@ const Contact = () => {
     };
 
     return (
-        <SectionWrapper id="contact" className=" ">
+        <SectionWrapper id="contact" className="px-2 ">
             <h2 className="text-center text-4xl">Contact Me</h2>
             <ToastContainer />
 
-            <div className="w-full lg:w-5/6 2xl:w-3/4 mt-10 md:mt-16 mx-auto flex justify-between rounded-xl">
+            <div className="w-full lg:w-5/6 2xl:w-3/4 mt-10 md:mt-16 mx-auto flex justify-between rounded-xl ">
                 
                 <Image unoptimized={true} quality={100} alt="contact" src="/contact.png" className="hidden md:block w-1/2 h-full object-cover" width={1000} height={1000} />
                 <div className="flex-1 backdrop-blur-xl w-fit rounded-xl p-3 bg-blue-300/20">

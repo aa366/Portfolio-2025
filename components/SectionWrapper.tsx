@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-const sectionVariants = {
+const sectionVariants:Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.6, ease: 'easeInOut' } }
 };
